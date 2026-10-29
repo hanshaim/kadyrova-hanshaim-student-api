@@ -48,10 +48,19 @@ pipeline {
 
         stage('Verify') {
             steps {
-                sh 'test -f build/libs/*.jar'
+                sh 'ls build/libs/*.jar > /dev/null'
                 echo 'Kadyrova Hanshaim: Java build verified'
                 echo 'Docker verification pending'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Kadyrova Hanshaim: Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Kadyrova Hanshaim: Pipeline failed!'
         }
     }
 }
